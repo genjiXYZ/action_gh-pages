@@ -1,4 +1,4 @@
-name: website
+name: page
 
 on: push
 jobs:
@@ -8,8 +8,15 @@ jobs:
       -
         name: Checkout
         uses: actions/checkout@v2
-      - name: npm
-        run: npm install
+
+
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 10
+      - run: npm install
+      - run: npm test
+
       - name: build
         run: npm run build
       - name: ls
